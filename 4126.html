@@ -88,8 +88,8 @@ function renderAdmin() {
   const saunaUrl = APP_URL + '?action=sauna&token=' + tokens.sauna;
   document.getElementById('visit-url').textContent = visitUrl;
   document.getElementById('sauna-url').textContent = saunaUrl;
-  document.getElementById('visit-qr-link').href = 'https://qr.quel.jp/qr/?D=' + encodeURIComponent(visitUrl);
-  document.getElementById('sauna-qr-link').href = 'https://qr.quel.jp/qr/?D=' + encodeURIComponent(saunaUrl);
+  document.getElementById('visit-qr-link').href = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(visitUrl);
+  document.getElementById('sauna-qr-link').href = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(saunaUrl);
 }
 
 function copyUrl(type) {
