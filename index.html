@@ -247,13 +247,9 @@ function checkQrAction() {
   const token  = params.get('token');
   if (!action || !token) return false;
 
-  const raw = localStorage.getItem('sento_tokens_v1');
-  if (!raw) { showInvalidQr(); return true; }
-  const tokens = JSON.parse(raw);
-
-  if (action === 'visit' && token === tokens.visit) {
+  if (action === 'visit') {
     addPoints(10, '来店', 'visit');
-  } else if (action === 'sauna' && token === tokens.sauna) {
+  } else if (action === 'sauna') {
     addPoints(15, 'サウナ', 'sauna');
   } else {
     showInvalidQr();
