@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>銭湯ポイント管理</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; background: #f5f5f0; color: #222; min-height: 100vh; }
+  .wrap { max-width: 420px; margin: 0 auto; padding: 1.2rem 1rem; }
+  .app-header { text-align: center; margin-bottom: 1.4rem; }
+  .app-title { font-size: 18px; font-weight: 600; color: #333; }
+  .app-sub { font-size: 12px; color: #bbb; margin-top: 3px; }
+  .card { background: #fff; border-radius: 14px; border: 1px solid #e8e8e0; padding: 1.2rem; margin-bottom: 1rem; }
+  .admin-block { background: #f9f9f6; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; }
+  .block-lbl { font-size: 14px; font-weight: 500; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .code-box { font-family: monospace; font-size: 11px; background: #fff; border: 1px solid #e0e0d8; border-radius: 8px; padding: 8px 10px; word-break: break-all; color: #333; margin-bottom: 8px; line-height: 1.5; }
+  .btn-row { display: flex; gap: 8px; }
+  .copy-btn { font-size: 13px; padding: 6px 14px; border-radius: 8px; border: 1px solid #ddd; background: #fff; color: #444; cursor: pointer; }
+  .copy-btn:active { background: #f0f0f0; }
+  .qr-link { font-size: 13px; padding: 6px 14px; border-radius: 8px; border: 1px solid #ddd; background: #fff; color: #444; text-decoration: none; cursor: pointer; }
+  .qr-hint { font-size: 12px; color: #aaa; margin-top: 6px; line-height: 1.6; }
+  .btn-full { width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid #ddd; background: #f5f5f0; color: #444; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; }
+  .btn-full:active { opacity: 0.8; }
+  .btn-danger { border-color: #F5C4B3; background: #FAECE7; color: #712B13; }
+  .section-ttl { font-size: 13px; color: #888; margin-bottom: 8px; }
+  .info-box { background: #E1F5EE; border-radius: 10px; padding: 0.8rem 1rem; font-size: 13px; color: #085041; margin-bottom: 1rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="app-header">
+    <div class="app-title">&#9965; 管理画面</div>
+    <div class="app-sub">スタッフ専用</div>
+  </div>
+
+  <div class="info-box">&#128275; このページのURLは外部に共有しないでください。</div>
+
+  <div class="card">
+    <div class="section-ttl">QRコード用URL</div>
+    <div style="font-size:13px;color:#888;margin-bottom:12px">下のURLをコピーしてQRコード生成サービスに貼り付け、印刷して店内に掲示してください。</div>
+
+    <div class="admin-block">
+      <div class="block-lbl" style="color:#085041">&#128690; 来店用（+10 pt）</div>
+      <div class="code-box" id="visit-url"></div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyUrl('visit')">&#128203; コピー</button>
+        <a id="visit-qr-link" href="#" target="_blank" class="qr-link">QR生成 &#8599;</a>
+      </div>
+      <div class="qr-hint">※ QR生成ボタンを押すとQRコード生成サービスが開きます</div>
+    </div>
+
+    <div class="admin-block">
+      <div class="block-lbl" style="color:#712B13">&#128293; サウナ用（+15 pt）</div>
+      <div class="code-box" id="sauna-url"></div>
+      <div class="btn-row">
+        <button class="copy-btn" onclick="copyUrl('sauna')">&#128203; コピー</button>
+        <a id="sauna-qr-link" href="#" target="_blank" class="qr-link">QR生成 &#8599;</a>
+      </div>
+    </div>
+
+    <button class="btn-full btn-danger" onclick="regenTokens()">&#8635; URLを再生成（古いQRが無効になります）</button>
+  </div>
+</div>
+
+<script>
+const TOKEN_KEY = 'sento_tokens_v1';
+const APP_URL   = 'https://italworks.github.io/gApp/';
+
+function randStr(n) {
+  const c = 'abcdefghijkmnpqrstuvwxyz23456789';
+  let s = '';
+  for (let i = 0; i < n; i++) s += c[Math.floor(Math.random() * c.length)];
+  return s;
+}
+
+function getTokens() {
+  const d = localStorage.getItem(TOKEN_KEY);
+  if (d) return JSON.parse(d);
+  const t = { visit: randStr(16), sauna: randStr(16) };
+  localStorage.setItem(TOKEN_KEY, JSON.stringify(t));
+  return t;
+}
+
+function renderAdmin() {
+  const tokens = getTokens();
+  const visitUrl = APP_URL + '?action=visit&token=' + tokens.visit;
+  const saunaUrl = APP_URL + '?action=sauna&token=' + tokens.sauna;
+  document.getElementById('visit-url').textContent = visitUrl;
+  document.getElementById('sauna-url').textContent = saunaUrl;
+  document.getElementById('visit-qr-link').href = 'https://qr.quel.jp/qr/?D=' + encodeURIComponent(visitUrl);
+  document.getElementById('sauna-qr-link').href = 'https://qr.quel.jp/qr/?D=' + encodeURIComponent(saunaUrl);
+}
+
+function copyUrl(type) {
+  const tokens = getTokens();
+  const url = type === 'visit'
+    ? APP_URL + '?action=visit&token=' + tokens.visit
+    : APP_URL + '?action=sauna&token=' + tokens.sauna;
+  navigator.clipboard?.writeText(url)
+    .then(() => alert('コピーしました'))
+    .catch(() => alert(url));
+}
+
+function regenTokens() {
+  if (!confirm('URLを再生成します。既存のQRコードは無効になります。よろしいですか？')) return;
+  const t = { visit: randStr(16), sauna: randStr(16) };
+  localStorage.setItem(TOKEN_KEY, JSON.stringify(t));
+  renderAdmin();
+  alert('再生成しました。新しいURLでQRコードを作り直してください。');
+}
+
+renderAdmin();
+</script>
+</body>
+</html>

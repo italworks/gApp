@@ -8,38 +8,21 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif; background: #f5f5f0; color: #222; min-height: 100vh; }
   .wrap { max-width: 420px; margin: 0 auto; padding: 1.2rem 1rem; }
-
-  /* ナビ */
-  .nav { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1rem; }
-  .nav-btn { padding: 0.6rem; border-radius: 10px; border: 1px solid #ddd; background: #fff; font-size: 14px; cursor: pointer; color: #555; display: flex; align-items: center; justify-content: center; gap: 5px; }
-  .nav-btn.active { background: #1D9E75; border-color: #1D9E75; color: #fff; font-weight: 500; }
-
-  /* カード */
+  .app-header { text-align: center; margin-bottom: 1.4rem; }
+  .app-title { font-size: 20px; font-weight: 600; color: #333; }
+  .app-sub { font-size: 12px; color: #bbb; margin-top: 3px; }
   .card { background: #fff; border-radius: 14px; border: 1px solid #e8e8e0; padding: 1.2rem; margin-bottom: 1rem; }
-
-  /* ポイント円 */
   .circle-wrap { display: flex; justify-content: center; margin-bottom: 1.4rem; }
   .point-circle { width: 140px; height: 140px; border-radius: 50%; border: 3px solid #1D9E75; display: flex; flex-direction: column; align-items: center; justify-content: center; }
   .point-num { font-size: 44px; font-weight: 600; color: #1D9E75; line-height: 1; }
   .point-lbl { font-size: 13px; color: #888; margin-top: 4px; }
-
-  /* ボタン */
-  .btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
-  .btn-visit { padding: 1rem; border-radius: 12px; border: 1px solid #9FE1CB; background: #E1F5EE; color: #085041; font-size: 15px; font-weight: 500; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .btn-sauna { padding: 1rem; border-radius: 12px; border: 1px solid #F5C4B3; background: #FAECE7; color: #712B13; font-size: 15px; font-weight: 500; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .btn-visit:active, .btn-sauna:active { opacity: 0.8; transform: scale(0.97); }
-  .btn-sub { font-size: 12px; opacity: 0.7; font-weight: 400; }
   .btn-full { width: 100%; padding: 0.75rem; border-radius: 10px; border: 1px solid #ddd; background: #f5f5f0; color: #444; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
   .btn-full:active { opacity: 0.8; }
-
-  /* 交換パネル */
-  .redeem-panel { margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem; }
+  .redeem-inner { margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem; }
   .redeem-opt { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
   .redeem-opt:last-child { border-bottom: none; }
   .use-btn { font-size: 13px; padding: 5px 14px; border-radius: 8px; border: 1px solid #ddd; background: #fff; color: #333; cursor: pointer; }
   .use-btn:active { background: #f0f0f0; }
-
-  /* 履歴 */
   .hist-list { list-style: none; }
   .hist-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f5f5f0; font-size: 14px; }
   .hist-item:last-child { border-bottom: none; }
@@ -47,37 +30,20 @@
   .pts-plus { color: #0F6E56; font-weight: 600; }
   .pts-minus { color: #993C1D; font-weight: 600; }
   .empty { text-align: center; color: #bbb; font-size: 14px; padding: 1.5rem 0; }
-
-  /* ページ */
   .page { display: none; }
   .page.active { display: block; }
-
-  /* 結果 */
-  .success-banner { background: #E1F5EE; border-radius: 14px; padding: 2rem 1rem; text-align: center; margin-bottom: 1rem; }
-  .success-icon { font-size: 48px; color: #1D9E75; }
+  .success-banner { background: #E1F5EEE; border-radius: 14px; padding: 2rem 1rem; text-align: center; margin-bottom: 1rem; background: #E1F5EE; }
   .success-pts { font-size: 40px; font-weight: 600; color: #1D9E75; margin-top: 8px; }
   .success-sub { font-size: 14px; color: #0F6E56; margin-top: 6px; }
   .success-total { font-size: 13px; color: #555; margin-top: 12px; }
   .err-banner { background: #FAECE7; border-radius: 14px; padding: 2rem 1rem; text-align: center; margin-bottom: 1rem; }
-  .err-icon { font-size: 48px; color: #993C1D; }
   .err-txt { font-size: 16px; font-weight: 500; color: #993C1D; margin-top: 8px; }
   .err-sub { font-size: 13px; color: #993C1D; margin-top: 6px; opacity: 0.8; }
-
-  /* ローディング */
+  .warn-banner { background: #FAEEDA; border-radius: 14px; padding: 2rem 1rem; text-align: center; margin-bottom: 1rem; }
+  .warn-txt { font-size: 16px; font-weight: 500; color: #633806; margin-top: 8px; }
+  .warn-sub { font-size: 13px; color: #854F0B; margin-top: 6px; }
   .loading { text-align: center; padding: 2rem; color: #aaa; font-size: 14px; }
-
-  /* 管理 */
-  .admin-block { background: #f9f9f6; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; }
-  .admin-lbl { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
-  .code-box { font-family: monospace; font-size: 11px; background: #fff; border: 1px solid #e0e0d8; border-radius: 8px; padding: 8px 10px; word-break: break-all; color: #333; margin-bottom: 6px; }
-  .copy-btn { font-size: 12px; padding: 4px 12px; border-radius: 8px; border: 1px solid #ddd; background: #fff; color: #444; cursor: pointer; }
   .section-ttl { font-size: 13px; color: #888; margin-bottom: 8px; }
-  .warn-box { background: #FAEEDA; border-radius: 10px; padding: 0.8rem 1rem; font-size: 13px; color: #633806; margin-bottom: 1rem; line-height: 1.6; }
-
-  /* ヘッダー */
-  .app-header { text-align: center; margin-bottom: 1.2rem; }
-  .app-title { font-size: 18px; font-weight: 600; color: #333; }
-  .app-sub { font-size: 12px; color: #aaa; margin-top: 2px; }
 </style>
 </head>
 <body>
@@ -87,12 +53,6 @@
     <div class="app-sub" id="user-id-display"></div>
   </div>
 
-  <div class="nav">
-    <button class="nav-btn active" id="tab-main" onclick="showPage('main')">ポイント帳</button>
-    <button class="nav-btn" id="tab-admin" onclick="showPage('admin')">QR管理</button>
-  </div>
-
-  <!-- メインページ -->
   <div id="page-main" class="page active">
     <div class="card">
       <div class="circle-wrap">
@@ -103,7 +63,7 @@
       </div>
       <button class="btn-full" onclick="toggleRedeem()">&#127873; ポイント交換</button>
       <div id="redeem-panel" style="display:none">
-        <div class="redeem-panel">
+        <div class="redeem-inner">
           <div class="redeem-opt">
             <div><div style="font-size:14px;font-weight:500">無料入浴券</div><div style="font-size:12px;color:#aaa">100 pt</div></div>
             <button class="use-btn" onclick="usePoints(100,'無料入浴券')">つかう</button>
@@ -121,42 +81,18 @@
     </div>
   </div>
 
-  <!-- 結果ページ -->
   <div id="page-result" class="page">
     <div id="result-content"></div>
     <button class="btn-full" onclick="showPage('main')">&#8592; ポイント帳に戻る</button>
   </div>
-
-  <!-- 管理ページ -->
-  <div id="page-admin" class="page">
-    <div class="card">
-      <div class="warn-box">&#9888; このページは店舗スタッフ用です。QRコードのURLをコピーして、QRコード生成サービスで画像を作成し印刷してください。</div>
-
-      <div class="admin-block">
-        <div class="admin-lbl" style="color:#085041">&#128690; 来店用（+10 pt）</div>
-        <div class="code-box" id="visit-url">読み込み中...</div>
-        <button class="copy-btn" onclick="copyUrl('visit')">コピー</button>
-      </div>
-
-      <div class="admin-block">
-        <div class="admin-lbl" style="color:#712B13">&#128293; サウナ用（+15 pt）</div>
-        <div class="code-box" id="sauna-url">読み込み中...</div>
-        <button class="copy-btn" onclick="copyUrl('sauna')">コピー</button>
-      </div>
-
-      <div style="font-size:12px;color:#aaa;margin-top:8px;line-height:1.6">URLを変更したい場合は下のボタンでトークンを再生成できます。古いQRコードは無効になります。</div>
-      <button class="btn-full" style="margin-top:10px;font-size:13px;color:#888" onclick="regenTokens()">&#8635; URLを再生成（古いQRが無効になります）</button>
-    </div>
-  </div>
 </div>
 
 <script>
-// ===== 設定 =====
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbzbSvwrYuxgGJtQx1yrobMx1InWLOeZAGPtKVqIPNXvV27TX-10OXfQAqPwUQSeW3juUQ/exec';
-const TOKEN_KEY = 'sento_tokens_v1';
-const USER_KEY  = 'sento_userkey_v1';
+const GAS_URL  = 'https://script.google.com/macros/s/AKfycbzbSvwrYuxgGJtQx1yrobMx1InWLOeZAGPtKVqIPNXvV27TX-10OXfQAqPwUQSeW3juUQ/exec';
+const USER_KEY = 'sento_userkey_v1';
+const SCAN_KEY = 'sento_last_scan_v1';
+const COOLDOWN = 30 * 60 * 1000; // 30分
 
-// ===== ユーザーキー =====
 function getUserKey() {
   let k = localStorage.getItem(USER_KEY);
   if (!k) { k = 'u_' + randStr(20); localStorage.setItem(USER_KEY, k); }
@@ -170,30 +106,11 @@ function randStr(n) {
   return s;
 }
 
-// ===== トークン =====
-function getTokens() {
-  const d = localStorage.getItem(TOKEN_KEY);
-  if (d) return JSON.parse(d);
-  const t = { visit: randStr(16), sauna: randStr(16) };
-  localStorage.setItem(TOKEN_KEY, JSON.stringify(t));
-  return t;
-}
-
-function regenTokens() {
-  if (!confirm('URLを再生成します。既存のQRコードは無効になります。よろしいですか？')) return;
-  const t = { visit: randStr(16), sauna: randStr(16) };
-  localStorage.setItem(TOKEN_KEY, JSON.stringify(t));
-  renderAdmin();
-  alert('再生成しました。新しいURLでQRコードを作り直してください。');
-}
-
-// ===== GAS通信 =====
 function gasGet(params) {
   const url = GAS_URL + '?' + new URLSearchParams(params).toString();
   return fetch(url).then(r => r.json());
 }
 
-// ===== ポイント取得 =====
 function loadPoints() {
   const userKey = getUserKey();
   gasGet({ action: 'get', token: 'get', userKey })
@@ -209,7 +126,6 @@ function loadPoints() {
     });
 }
 
-// ===== 履歴表示 =====
 function renderHistory(hist) {
   const wrap = document.getElementById('hist-wrap');
   if (!hist.length) { wrap.innerHTML = '<div class="empty">まだ記録がありません</div>'; return; }
@@ -226,17 +142,49 @@ function renderHistory(hist) {
   }).join('') + '</ul>';
 }
 
-// ===== ポイント追加 =====
-function addPoints(pts, label) {
+function checkCooldown(actionType) {
+  const raw = localStorage.getItem(SCAN_KEY);
+  const scans = raw ? JSON.parse(raw) : {};
+  const last = scans[actionType] || 0;
+  const now = Date.now();
+  if (now - last < COOLDOWN) {
+    const remaining = Math.ceil((COOLDOWN - (now - last)) / 60000);
+    return remaining;
+  }
+  return 0;
+}
+
+function recordScan(actionType) {
+  const raw = localStorage.getItem(SCAN_KEY);
+  const scans = raw ? JSON.parse(raw) : {};
+  scans[actionType] = Date.now();
+  localStorage.setItem(SCAN_KEY, JSON.stringify(scans));
+}
+
+function addPoints(pts, label, actionType) {
+  const remaining = checkCooldown(actionType);
+  if (remaining > 0) {
+    document.getElementById('result-content').innerHTML = `
+      <div class="warn-banner">
+        <div style="font-size:36px;color:#854F0B">&#9201;</div>
+        <div class="warn-txt">しばらくお待ちください</div>
+        <div class="warn-sub">次のスキャンまであと約 <strong>${remaining}分</strong> です</div>
+      </div>`;
+    showPage('result');
+    return;
+  }
+
   const userKey = getUserKey();
   document.getElementById('result-content').innerHTML = '<div class="loading">通信中...</div>';
   showPage('result');
+
   gasGet({ action: 'add', token: 'add', userKey, pts, label })
     .then(d => {
       if (d.ok) {
+        recordScan(actionType);
         document.getElementById('result-content').innerHTML = `
           <div class="success-banner">
-            <div class="success-icon">&#10003;</div>
+            <div style="font-size:48px;color:#1D9E75">&#10003;</div>
             <div class="success-pts">+${d.pts} pt</div>
             <div class="success-sub">${d.label}ポイントを追加しました</div>
             <div class="success-total">合計 <strong>${d.total} pt</strong></div>
@@ -248,78 +196,44 @@ function addPoints(pts, label) {
     .catch(() => showError('通信エラー。Wi-Fiをご確認ください。'));
 }
 
-// ===== ポイント使用 =====
 function usePoints(pts, label) {
   const cur = parseInt(document.getElementById('total-pts').textContent) || 0;
   if (cur < pts) { alert('ポイントが足りません（' + cur + ' pt）'); return; }
   if (!confirm(label + 'と交換しますか？（' + pts + ' pt 使用）')) return;
-  addPoints(-pts, label + '使用');
+  const userKey = getUserKey();
+  document.getElementById('result-content').innerHTML = '<div class="loading">通信中...</div>';
+  showPage('result');
+  gasGet({ action: 'add', token: 'add', userKey, pts: -pts, label: label + '使用' })
+    .then(d => {
+      if (d.ok) {
+        document.getElementById('result-content').innerHTML = `
+          <div class="success-banner">
+            <div style="font-size:48px;color:#1D9E75">&#127873;</div>
+            <div class="success-pts">-${pts} pt</div>
+            <div class="success-sub">${label}と交換しました</div>
+            <div class="success-total">残り <strong>${d.total} pt</strong></div>
+          </div>`;
+      } else {
+        showError(d.error || 'エラーが発生しました');
+      }
+    })
+    .catch(() => showError('通信エラー。Wi-Fiをご確認ください。'));
   document.getElementById('redeem-panel').style.display = 'none';
 }
 
 function showError(msg) {
   document.getElementById('result-content').innerHTML = `
     <div class="err-banner">
-      <div class="err-icon">&#9888;</div>
+      <div style="font-size:36px;color:#993C1D">&#9888;</div>
       <div class="err-txt">${msg}</div>
       <div class="err-sub">店頭スタッフにお声がけください</div>
     </div>`;
 }
 
-// ===== QRアクション =====
-function checkQrAction() {
-  const params = new URLSearchParams(location.search);
-  const action = params.get('action');
-  const token  = params.get('token');
-  if (!action || !token) return;
-
-  const tokens = getTokens();
-  if (action === 'visit' && token === tokens.visit) {
-    addPoints(10, '来店');
-  } else if (action === 'sauna' && token === tokens.sauna) {
-    addPoints(15, 'サウナ');
-  } else {
-    document.getElementById('result-content').innerHTML = `
-      <div class="err-banner">
-        <div class="err-icon">&#9888;</div>
-        <div class="err-txt">無効なQRコードです</div>
-        <div class="err-sub">店頭のQRコードをご利用ください</div>
-      </div>`;
-    showPage('result');
-  }
-}
-
-// ===== ページ切替 =====
 function showPage(name) {
-  ['main','result','admin'].forEach(p => {
-    document.getElementById('page-'+p).classList.remove('active');
-  });
+  ['main','result'].forEach(p => document.getElementById('page-'+p).classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
-  ['main','admin'].forEach(t => {
-    const el = document.getElementById('tab-'+t);
-    if (el) el.classList.remove('active');
-  });
-  if (name === 'main')  { document.getElementById('tab-main').classList.add('active');  loadPoints(); }
-  if (name === 'admin') { document.getElementById('tab-admin').classList.add('active'); renderAdmin(); }
-}
-
-// ===== 管理画面 =====
-function renderAdmin() {
-  const tokens = getTokens();
-  const base   = location.href.split('?')[0];
-  document.getElementById('visit-url').textContent = base + '?action=visit&token=' + tokens.visit;
-  document.getElementById('sauna-url').textContent = base + '?action=sauna&token=' + tokens.sauna;
-}
-
-function copyUrl(type) {
-  const tokens = getTokens();
-  const base   = location.href.split('?')[0];
-  const url = type === 'visit'
-    ? base + '?action=visit&token=' + tokens.visit
-    : base + '?action=sauna&token=' + tokens.sauna;
-  navigator.clipboard?.writeText(url)
-    .then(() => alert('コピーしました'))
-    .catch(() => alert(url));
+  if (name === 'main') loadPoints();
 }
 
 function toggleRedeem() {
@@ -327,11 +241,39 @@ function toggleRedeem() {
   p.style.display = p.style.display === 'block' ? 'none' : 'block';
 }
 
-// ===== 起動 =====
+function checkQrAction() {
+  const params = new URLSearchParams(location.search);
+  const action = params.get('action');
+  const token  = params.get('token');
+  if (!action || !token) return false;
+
+  const raw = localStorage.getItem('sento_tokens_v1');
+  if (!raw) { showInvalidQr(); return true; }
+  const tokens = JSON.parse(raw);
+
+  if (action === 'visit' && token === tokens.visit) {
+    addPoints(10, '来店', 'visit');
+  } else if (action === 'sauna' && token === tokens.sauna) {
+    addPoints(15, 'サウナ', 'sauna');
+  } else {
+    showInvalidQr();
+  }
+  return true;
+}
+
+function showInvalidQr() {
+  document.getElementById('result-content').innerHTML = `
+    <div class="err-banner">
+      <div style="font-size:36px;color:#993C1D">&#9888;</div>
+      <div class="err-txt">無効なQRコードです</div>
+      <div class="err-sub">店頭のQRコードをご利用ください</div>
+    </div>`;
+  showPage('result');
+}
+
 const userKey = getUserKey();
-document.getElementById('user-id-display').textContent = 'ID: ' + userKey.slice(0,10) + '...';
-checkQrAction();
-if (!new URLSearchParams(location.search).get('action')) loadPoints();
+document.getElementById('user-id-display').textContent = 'ID: ' + userKey.slice(0,12) + '...';
+if (!checkQrAction()) loadPoints();
 </script>
 </body>
 </html>
